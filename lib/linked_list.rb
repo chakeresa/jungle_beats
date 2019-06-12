@@ -12,14 +12,14 @@ class LinkedList
       end
       walk.next_node = Node.new(data)
     else
-      @head = Node.new(data)
+      set_head(data)
     end
     data
   end
 
   def prepend(data)
     orig_head = @head
-    @head = Node.new(data)
+    set_head(data)
     @head.next_node = orig_head
   end
 
@@ -46,5 +46,11 @@ class LinkedList
       end
     end
     str
+  end
+
+  private
+
+  def set_head(data)
+    @head = Node.new(data)
   end
 end
