@@ -45,6 +45,16 @@ class LinkedListTest < Minitest::Test
     assert_nil @list.head.next_node.next_node.next_node
   end
 
+  def test_prepend_adds_a_new_node_at_the_head
+    @list.append("plop")
+    @list.append("suu")
+
+    @list.prepend("dop")
+
+    assert_equal "dop plop suu", @list.to_string
+    assert_equal 3, @list.count
+  end
+
   def test_count_inits_to_zero
     assert_equal 0, @list.count
   end

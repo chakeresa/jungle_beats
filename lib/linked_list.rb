@@ -17,6 +17,12 @@ class LinkedList
     data
   end
 
+  def prepend(data)
+    orig_head = @head
+    @head = Node.new(data)
+    @head.next_node = orig_head
+  end
+
   def count
     if walk = @head
       counter = 1
