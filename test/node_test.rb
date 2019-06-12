@@ -13,7 +13,13 @@ class NodeTest < Minitest::Test
     assert_equal "plop", @node.data
   end
 
-  def test_next_node_inits_to_nil
+  def test_next_node_inits_to_nil_by_default
     assert_nil @node.next_node
+  end
+
+  def test_next_node_can_init_to_something_else
+    new_node = Node.new("beep", @node)
+    
+    assert_equal @node, new_node.next_node
   end
 end
