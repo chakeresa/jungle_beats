@@ -78,12 +78,7 @@ class LinkedList
   end
 
   def insert_midway(index, data)
-    counter = 0
-    walk = @head
-    while counter < index - 1
-      walk = walk.next_node
-      counter += 1
-    end
+    walk = walk_to_index(index - 1)[0]
     walk.next_node = Node.new(data, walk.next_node)
   end
 
