@@ -55,6 +55,44 @@ class LinkedListTest < Minitest::Test
     assert_equal 3, @list.count
   end
 
+  def test_insert_appends_when_index_is_greater_than_count
+    @list.append("plop")
+    @list.append("suu")
+
+    @list.insert(5, "dop")
+
+    assert_equal "plop suu dop", @list.to_string
+  end
+
+  def test_insert_can_add_the_first_node
+    @list.insert(0, "plop")
+
+    assert_equal "plop", @list.to_string
+  end
+
+  def test_insert_adds_a_node_at_the_specd_index_1
+    @list.append("plop")
+    @list.append("suu")
+    @list.prepend("dop")
+
+    @list.insert(1, "woo")
+
+    assert_equal "dop woo plop suu", @list.to_string
+    assert_equal 4, @list.count
+  end
+
+  def test_insert_adds_a_node_at_the_specd_index_2
+    @list.append("beep")
+    @list.append("plop")
+    @list.append("suu")
+    @list.prepend("dop")
+
+    @list.insert(2, "woo")
+
+    assert_equal "dop beep woo plop suu", @list.to_string
+    assert_equal 5, @list.count
+  end
+
   def test_count_inits_to_zero
     assert_equal 0, @list.count
   end

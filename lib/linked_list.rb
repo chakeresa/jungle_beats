@@ -23,6 +23,17 @@ class LinkedList
     @head.next_node = orig_head
   end
 
+  def insert(index, data)
+    case
+    when index > count
+      append(data)
+    when index == 0
+      prepend(data)
+    when index <= count
+      insert_midway(index, data)
+    end
+  end
+
   def count
     if walk = @head
       counter = 1
@@ -52,5 +63,15 @@ class LinkedList
 
   def set_head(data)
     @head = Node.new(data)
+  end
+
+  def insert_midway(index, data)
+    counter = 0
+    walk = @head
+    while counter < index - 1
+      walk = walk.next_node
+      counter += 1
+    end
+    walk.next_node = Node.new(data, walk.next_node)
   end
 end
