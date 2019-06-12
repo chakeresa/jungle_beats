@@ -31,10 +31,14 @@ class LinkedList
   end
 
   def to_string
-    if @head
-      @head.data # TO DO: make smart
-    else
-      ""
+    str = ""
+    if walk = @head
+      str << walk.data
+      while walk.next_node
+        walk = walk.next_node
+        str << " " + walk.data
+      end
     end
+    str
   end
 end

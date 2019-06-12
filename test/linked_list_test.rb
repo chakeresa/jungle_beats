@@ -80,4 +80,17 @@ class LinkedListTest < Minitest::Test
 
     assert_equal data, @list.to_string
   end
+
+  def test_to_string_returns_data_of_all_nodes_sep_by_spaces
+    data_1 = "boots"
+    @list.append(data_1)
+
+    data_2 = "cats"
+    @list.append(data_2)
+
+    data_3 = "deep"
+    @list.append(data_3)
+
+    assert_equal "#{data_1} #{data_2} #{data_3}", @list.to_string
+  end
 end
