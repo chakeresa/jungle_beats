@@ -20,6 +20,31 @@ class LinkedListTest < Minitest::Test
     assert_nil @list.head.next_node
   end
 
+  def test_it_can_append_a_second_node
+    data_1 = "boots"
+    @list.append(data_1)
+
+    data_2 = "cats"
+
+    assert_equal data_2, @list.append(data_2)
+    assert_equal data_2, @list.head.next_node.data
+    assert_nil @list.head.next_node.next_node
+  end
+
+  def test_it_can_append_a_third_node
+    data_1 = "boots"
+    @list.append(data_1)
+
+    data_2 = "cats"
+    @list.append(data_2)
+
+    data_3 = "deep"
+
+    assert_equal data_3, @list.append(data_3)
+    assert_equal data_3, @list.head.next_node.next_node.data
+    assert_nil @list.head.next_node.next_node.next_node
+  end
+
   def test_count_inits_to_zero
     assert_equal 0, @list.count
   end
@@ -31,6 +56,20 @@ class LinkedListTest < Minitest::Test
     assert_equal 1, @list.count
   end
 
+  def test_count_increments_when_adding_more_nodes
+    data_1 = "boots"
+    @list.append(data_1)
+    assert_equal 1, @list.count
+
+    data_2 = "cats"
+    @list.append(data_2)
+    assert_equal 2, @list.count
+
+    data_3 = "deep"
+    @list.append(data_3)
+    assert_equal 3, @list.count
+  end
+
   def test_to_string_returns_empty_string_for_empty_list
     assert_equal "", @list.to_string
   end
@@ -40,5 +79,18 @@ class LinkedListTest < Minitest::Test
     @list.append(data)
 
     assert_equal data, @list.to_string
+  end
+
+  def test_to_string_returns_data_of_all_nodes_sep_by_spaces
+    data_1 = "boots"
+    @list.append(data_1)
+
+    data_2 = "cats"
+    @list.append(data_2)
+
+    data_3 = "deep"
+    @list.append(data_3)
+
+    assert_equal "#{data_1} #{data_2} #{data_3}", @list.to_string
   end
 end
