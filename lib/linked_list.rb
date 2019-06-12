@@ -60,12 +60,7 @@ class LinkedList
   def find(starting_index, number_to_return)
     str = ""
     if starting_index <= count && starting_index >= 0
-      counter = 0
-      walk = @head
-      while counter < starting_index
-        walk = walk.next_node
-        counter += 1
-      end
+      walk, counter = walk_to_index(starting_index)
       str << walk.data
       while counter < starting_index + number_to_return - 1
         walk = walk.next_node
@@ -90,5 +85,15 @@ class LinkedList
       counter += 1
     end
     walk.next_node = Node.new(data, walk.next_node)
+  end
+
+  def walk_to_index(starting_index)
+    counter = 0
+    walk = @head
+    while counter < starting_index
+      walk = walk.next_node
+      counter += 1
+    end
+    [walk, counter]
   end
 end
