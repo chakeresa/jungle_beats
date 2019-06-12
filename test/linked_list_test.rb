@@ -30,4 +30,15 @@ class LinkedListTest < Minitest::Test
 
     assert_equal 1, @list.count
   end
+
+  def test_to_string_returns_empty_string_for_empty_list
+    assert_equal "", @list.to_string
+  end
+
+  def test_to_string_returns_data_of_first_node_when_1_node
+    data = "doop"
+    @list.append(data)
+
+    assert_equal data, @list.to_string
+  end
 end

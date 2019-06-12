@@ -17,4 +17,12 @@ class LinkedList
       0
     end
   end
+
+  def to_string
+    if @head
+      @head.data # TO DO: make smart
+    else
+      ""
+    end
+  end
 end
