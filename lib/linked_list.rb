@@ -18,8 +18,13 @@ class LinkedList
   end
 
   def count
-    if @head
-      1 # TO DO: make smart
+    if walk = @head
+      counter = 1
+      while walk.next_node
+        walk = walk.next_node
+        counter +=1
+      end
+      counter
     else
       0
     end
