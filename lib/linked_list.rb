@@ -33,16 +33,15 @@ class LinkedList
   end
 
   def count
+    counter = 0
     if walk = @head
-      counter = 1
+      counter += 1
       while walk.next_node
         walk = walk.next_node
         counter +=1
       end
-      counter
-    else
-      0
     end
+    counter
   end
 
   def to_string
