@@ -59,7 +59,7 @@ class LinkedList
 
   def find(starting_index, number_to_return)
     str = ""
-    if starting_index <= count && starting_index >= 0
+    if starting_index + number_to_return <= count && starting_index >= 0
       walk, counter = walk_to_index(starting_index)
       str << walk.data
       while counter < starting_index + number_to_return - 1
