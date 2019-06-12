@@ -141,4 +141,15 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "#{data_1} #{data_2} #{data_3}", @list.to_string
   end
+
+  def test_find_returns_a_string_of_data_at_index_and_for_desired_span
+    @list.append("deep")
+    @list.append("woo")
+    @list.append("shi")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal "shi", @list.find(2, 1)
+    assert_equal "woo shi shu", @list.find(1, 3)
+  end
 end

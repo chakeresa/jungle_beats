@@ -57,6 +57,25 @@ class LinkedList
     str
   end
 
+  def find(starting_index, number_to_return)
+    str = ""
+    if starting_index <= count && starting_index >= 0
+      counter = 0
+      walk = @head
+      while counter < starting_index
+        walk = walk.next_node
+        counter += 1
+      end
+      str << walk.data
+      while counter < starting_index + number_to_return - 1
+        walk = walk.next_node
+        counter += 1
+        str << " " + walk.data
+      end
+    end
+    str
+  end
+
   private
 
   def set_head(data, next_node = nil)
