@@ -18,9 +18,7 @@ class LinkedList
   end
 
   def prepend(data)
-    orig_head = @head
-    set_head(data)
-    @head.next_node = orig_head
+    set_head(data, @head)
   end
 
   def insert(index, data)
@@ -61,8 +59,8 @@ class LinkedList
 
   private
 
-  def set_head(data)
-    @head = Node.new(data)
+  def set_head(data, next_node = nil)
+    @head = Node.new(data, next_node)
   end
 
   def insert_midway(index, data)
