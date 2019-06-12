@@ -45,23 +45,6 @@ class LinkedListTest < Minitest::Test
     assert_nil @list.head.next_node.next_node.next_node
   end
 
-  def test_it_can_append_a_fourth_node
-    data_1 = "boots"
-    @list.append(data_1)
-
-    data_2 = "cats"
-    @list.append(data_2)
-
-    data_3 = "boom"
-    @list.append(data_3)
-
-    data_4 = "deep"
-
-    assert_equal data_4, @list.append(data_4)
-    assert_equal data_4, @list.head.next_node.next_node.next_node.data
-    assert_nil @list.head.next_node.next_node.next_node.next_node
-  end
-
   def test_count_inits_to_zero
     assert_equal 0, @list.count
   end
