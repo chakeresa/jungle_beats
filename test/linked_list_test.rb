@@ -12,4 +12,11 @@ class LinkedListTest < Minitest::Test
   def test_it_inits_with_nil_head
     assert_nil @list.head
   end
+
+  def test_it_can_append_the_first_node
+    data = "doop"
+    assert_equal data, @list.append(data)
+    assert_equal data, @list.head.data
+    assert_nil @list.head.next_node
+  end
 end
