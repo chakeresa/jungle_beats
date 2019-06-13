@@ -70,6 +70,17 @@ class LinkedList
     str
   end
 
+  def includes?(data)
+    if walk = @head
+      return true if walk.data == data
+      while walk.next_node
+        return true if walk.data == data
+        walk = walk.next_node
+      end
+    end
+    false
+  end
+
   private
 
   def set_head(data, next_node = nil)

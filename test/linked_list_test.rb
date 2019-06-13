@@ -166,4 +166,17 @@ class LinkedListTest < Minitest::Test
     assert_equal "", @list.find(7, 1)
     assert_equal "", @list.find(2, 4)
   end
+
+  def test_includes_returns_true_if_in_list_or_false_if_not
+    @list.append("deep")
+    @list.append("woo")
+    @list.append("shi")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal true, @list.includes?("deep")
+    assert_equal true, @list.includes?("woo")
+    assert_equal true, @list.includes?("shi")
+    assert_equal false, @list.includes?("dep")
+  end
 end
