@@ -81,6 +81,13 @@ class LinkedList
     false
   end
 
+  def pop
+    second_to_last = walk_to_index(count - 2)[0]
+    data = second_to_last.next_node.data
+    second_to_last.next_node = nil
+    data
+  end
+
   private
 
   def set_head(data, next_node = nil)
@@ -92,10 +99,10 @@ class LinkedList
     walk.next_node = Node.new(data, walk.next_node)
   end
 
-  def walk_to_index(starting_index)
+  def walk_to_index(index)
     counter = 0
     walk = @head
-    while counter < starting_index
+    while counter < index
       walk = walk.next_node
       counter += 1
     end

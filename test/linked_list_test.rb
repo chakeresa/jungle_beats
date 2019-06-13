@@ -179,4 +179,16 @@ class LinkedListTest < Minitest::Test
     assert_equal true, @list.includes?("shi")
     assert_equal false, @list.includes?("dep")
   end
+
+  def test_pop_removes_the_last_element_of_the_list
+    @list.append("deep")
+    @list.append("woo")
+    @list.append("shi")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal "blop", @list.pop
+    assert_equal "shu", @list.pop
+    assert_equal "deep woo shi", @list.to_string
+  end
 end
