@@ -79,9 +79,16 @@ class LinkedList
   end
 
   def pop
-    second_to_last = walk_to_index(count - 2)[0]
-    data = second_to_last.next_node.data
-    second_to_last.next_node = nil
+    if count > 1
+      second_to_last = walk_to_index(count - 2)[0]
+      data = second_to_last.next_node.data
+      second_to_last.next_node = nil
+    elsif count == 1
+      data = @head.data
+      @head = nil
+    else
+      return p "nothing to pop"
+    end
     data
   end
 

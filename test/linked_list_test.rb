@@ -168,7 +168,9 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_includes_returns_true_if_in_list_or_false_if_not
+    assert_equal false, @list.includes?("dep")
     @list.append("deep")
+    assert_equal false, @list.includes?("dep")
     @list.append("woo")
     @list.append("shi")
     @list.append("shu")
@@ -182,13 +184,15 @@ class LinkedListTest < Minitest::Test
 
   def test_pop_removes_the_last_element_of_the_list
     @list.append("deep")
-    @list.append("woo")
-    @list.append("shi")
     @list.append("shu")
     @list.append("blop")
 
     assert_equal "blop", @list.pop
     assert_equal "shu", @list.pop
-    assert_equal "deep woo shi", @list.to_string
+    assert_equal "deep", @list.to_string
+    assert_equal "deep", @list.pop
+    assert_equal "", @list.to_string
+    assert_equal "nothing to pop", @list.pop
+    assert_equal "", @list.to_string
   end
 end
