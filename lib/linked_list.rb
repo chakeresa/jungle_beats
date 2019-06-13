@@ -6,11 +6,8 @@ class LinkedList
   end
 
   def append(data)
-    if walk = @head
-      while walk.next_node
-        walk = walk.next_node
-      end
-      walk.next_node = Node.new(data)
+    if @head
+      tail.next_node = Node.new(data)
     else
       set_head(data)
     end
@@ -33,16 +30,15 @@ class LinkedList
   end
 
   def count
+    counter = 0
     if walk = @head
-      counter = 1
+      counter += 1
       while walk.next_node
         walk = walk.next_node
         counter +=1
       end
-      counter
-    else
-      0
     end
+    counter
   end
 
   def to_string
@@ -57,6 +53,45 @@ class LinkedList
     str
   end
 
+  def find(starting_index, number_to_return)
+    str = ""
+    if starting_index + number_to_return <= count && starting_index >= 0
+      walk, counter = walk_to_index(starting_index)
+      str << walk.data
+      while counter < starting_index + number_to_return - 1
+        walk = walk.next_node
+        counter += 1
+        str << " " + walk.data
+      end
+    end
+    str
+  end
+
+  def includes?(data)
+    if walk = @head
+      return true if walk.data == data
+      while walk.next_node
+        return true if walk.data == data
+        walk = walk.next_node
+      end
+    end
+    false
+  end
+
+  def pop
+    if count > 1
+      second_to_last = walk_to_index(count - 2)[0]
+      data = second_to_last.next_node.data
+      second_to_last.next_node = nil
+    elsif count == 1
+      data = @head.data
+      @head = nil
+    else
+      return p "nothing to pop"
+    end
+    data
+  end
+
   private
 
   def set_head(data, next_node = nil)
@@ -64,12 +99,21 @@ class LinkedList
   end
 
   def insert_midway(index, data)
+    walk = walk_to_index(index - 1)[0]
+    walk.next_node = Node.new(data, walk.next_node)
+  end
+
+  def walk_to_index(index)
     counter = 0
     walk = @head
-    while counter < index - 1
+    while counter < index
       walk = walk.next_node
       counter += 1
     end
-    walk.next_node = Node.new(data, walk.next_node)
+    [walk, counter]
+  end
+
+  def tail
+    walk_to_index(count - 1)[0]
   end
 end

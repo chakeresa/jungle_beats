@@ -141,4 +141,58 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "#{data_1} #{data_2} #{data_3}", @list.to_string
   end
+
+  def test_find_returns_a_string_of_data_at_index_and_for_desired_span
+    @list.append("deep")
+    @list.append("woo")
+    @list.append("shi")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal "deep", @list.find(0, 1)
+    assert_equal "shi", @list.find(2, 1)
+    assert_equal "woo shi shu", @list.find(1, 3)
+    assert_equal "shu blop", @list.find(3, 2)
+  end
+
+  def test_find_returns_empty_string_if_index_oob
+    @list.append("deep")
+    @list.append("woo")
+    @list.append("shi")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal "", @list.find(-3, 1)
+    assert_equal "", @list.find(7, 1)
+    assert_equal "", @list.find(2, 4)
+  end
+
+  def test_includes_returns_true_if_in_list_or_false_if_not
+    assert_equal false, @list.includes?("dep")
+    @list.append("deep")
+    assert_equal false, @list.includes?("dep")
+    @list.append("woo")
+    @list.append("shi")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal true, @list.includes?("deep")
+    assert_equal true, @list.includes?("woo")
+    assert_equal true, @list.includes?("shi")
+    assert_equal false, @list.includes?("dep")
+  end
+
+  def test_pop_removes_the_last_element_of_the_list
+    @list.append("deep")
+    @list.append("shu")
+    @list.append("blop")
+
+    assert_equal "blop", @list.pop
+    assert_equal "shu", @list.pop
+    assert_equal "deep", @list.to_string
+    assert_equal "deep", @list.pop
+    assert_equal "", @list.to_string
+    assert_equal "nothing to pop", @list.pop
+    assert_equal "", @list.to_string
+  end
 end
