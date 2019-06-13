@@ -23,4 +23,10 @@ class JungleBeatTest < Minitest::Test
     assert_equal 6, @jb.count
     assert_equal "deep doo ditt woo hoo shu", @jb.list.to_string
   end
+
+  def test_play_says_the_whole_string_out_loud
+    assert_equal "deep doo ditt woo hoo shu", @jb.append("deep doo ditt woo hoo shu")
+    assert_equal 6, @jb.count
+    assert_equal "", @jb.play
+  end
 end
