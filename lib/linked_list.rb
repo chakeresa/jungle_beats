@@ -6,11 +6,8 @@ class LinkedList
   end
 
   def append(data)
-    if walk = @head
-      while walk.next_node
-        walk = walk.next_node
-      end
-      walk.next_node = Node.new(data)
+    if @head
+      tail.next_node = Node.new(data)
     else
       set_head(data)
     end
@@ -107,5 +104,9 @@ class LinkedList
       counter += 1
     end
     [walk, counter]
+  end
+
+  def tail
+    walk_to_index(count - 1)[0]
   end
 end
